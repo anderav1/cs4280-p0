@@ -18,7 +18,7 @@ list_t* createList() {
 }
 
 // create a list node for a new word
-listnode_t* createListNode(char* word) {
+listnode_t* createListNode(const char word[]) {
   listnode_t* node = (listnode_t*)malloc(sizeof(listnode_t));
   
   strcpy(node->word, word);
@@ -28,7 +28,7 @@ listnode_t* createListNode(char* word) {
 }
 
 // append new word to end of list
-void addToList(list_t* list, char* word) {
+void addToList(list_t* list, const char word[]) {
   listnode_t* newnode = createListNode(word);
   
   if (listEmpty(list)) {

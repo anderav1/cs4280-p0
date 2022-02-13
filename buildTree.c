@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "buildTree.h"
 #include "list.h"
 #include "node.h"
@@ -29,7 +30,7 @@ node_t* buildTree(FILE* file) {
 }
 
 // check that word is comprised only of lowercase letters
-bool isValidWord(char* word) {
+bool isValidWord(const char word[]) {
   int i;
   for (i = 0; i < (int)strlen(word); i++) {
     if (word[i] < 'a' || word[i] > 'z') return false;
@@ -38,7 +39,7 @@ bool isValidWord(char* word) {
 }
 
 // add word to corresponding tree node
-node_t* insertInTree(node_t* root, char* word) {
+node_t* insertInTree(node_t* root, const char word[]) {
   char letter = getLastLetter(word);
   
   if (root == NULL) {
@@ -59,7 +60,7 @@ node_t* insertInTree(node_t* root, char* word) {
 }
 
 // get the last letter in the word
-char getLastLetter(char* word) {
+char getLastLetter(const char word[]) {
     return word[strlen(word) - 1];
 }
 

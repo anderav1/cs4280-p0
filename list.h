@@ -17,8 +17,8 @@ typedef struct {
 
 
 list_t* createList();
-listnode_t* createListNode(char*);
-void addToList(list_t*, char*);
+listnode_t* createListNode(const char[]);
+void addToList(list_t*, const char[]);
 bool listEmpty(list_t*);
 
 

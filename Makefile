@@ -1,13 +1,13 @@
 # Lexi Anderson
-# Feb 12, 2022
+# Feb 13, 2022
 # CS 4280, Project 0
 # Makefile
 
 
 CC = g++
 CFLAGS = -g -Wall -std=c++11
-OBJS = main.o buildTree.o traversals.o list.o
-DEPS = buildTree.h traversals.h list.h node.h
+OBJS = main.o buildTree.o traversals.o list.o config.o
+DEPS = buildTree.h traversals.h list.h node.h config.h
 TARGET = P0
 
 $(TARGET): $(OBJS)

@@ -1,5 +1,5 @@
 // Lexi Anderson
-// Feb 12, 2022
+// Feb 13, 2022
 // CS 4280, Project 0
 // buildTree.h
 
@@ -10,9 +10,9 @@
 #include "node.h"
 
 node_t* buildTree(FILE*);
-bool isValidWord(char*);
-node_t* insertInTree(node_t*, char*);
-char getLastLetter(char*);
+bool isValidWord(const char[]);
+node_t* insertInTree(node_t*, const char[]);
+char getLastLetter(const char[]);
 node_t* createTreeNode(char);
 
 
