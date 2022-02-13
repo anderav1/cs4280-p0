@@ -31,23 +31,27 @@ int main(int argc, char* argv[]) {
     strcpy(fileName, argv[1]);
   }
 
-  if (fileName != NULL) {
+  if (strlen(fileName) != 0) {
     fp = fopen(fileName, "r");
     if (fp == NULL) {
       errExit("File \'%s\' is not readable", fileName);
     }
+    puts("Input file successfully opened");
   } else {
     puts("Filename not provided, using default");
     fp = stdin;
     strcpy(fileName, "out");
   }
   
+  puts("Resetting output files");
   resetOutputFiles(fileName);
 
+  puts("Building tree");
 	root = buildTree(fp);
  
   if (fp != stdin) fclose(fp);
 
+  puts("Starting tree traversals");
 //	traverseLevelOrder(root, fileName);
 	traversePreOrder(root, fileName);
 	traversePostOrder(root, fileName);
@@ -65,12 +69,12 @@ void printArgV(int argc, char* argv[]) {
 }
 
 // clean up any previously generated output files
-void resetOutputFiles(char* baseFileName) {
-  char *preFile, *postFile, *levelFile;
+void resetOutputFiles(char baseFileName[]) {
+  char preFile[bufferSize], postFile[bufferSize], levelFile[bufferSize];
   
-  sprintf(preFile, "%s.preorder", baseFileName);
-  sprintf(postFile, "%s.postorder", baseFileName);
-  sprintf(levelFile, "%s.levelorder", baseFileName);
+  snprintf(preFile, bufferSize, "%s.preorder", baseFileName);
+  snprintf(postFile, bufferSize, "%s.postorder", baseFileName);
+  snprintf(levelFile, bufferSize, "%s.levelorder", baseFileName);
   
   clearFileContents(preFile);
   clearFileContents(postFile);

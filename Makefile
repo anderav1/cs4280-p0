@@ -20,5 +20,5 @@ $(OBJS): %.o: %.c $(DEPS)
 # clean up generated files
 .PHONY: clean
 clean:
-	rm -f $(TARGET) $(OBJS)
+	rm -f $(TARGET) $(OBJS) *.preorder *.postorder *.levelorder
 # TODO: remove any other files as necessary
