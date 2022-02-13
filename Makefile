@@ -20,5 +20,6 @@ $(OBJS): %.o: %.c $(DEPS)
 # clean up generated files
 .PHONY: clean
 clean:
-	rm -f $(TARGET) $(OBJS) *.preorder *.postorder *.levelorder
-# TODO: remove any other files as necessary
+	rm -f $(TARGET) $(OBJS)
+	find . \( -name "*.preorder" -o -name "*.postorder" -o -name "*.levelorder" \) -delete
+
