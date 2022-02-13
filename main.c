@@ -37,8 +37,9 @@ int main(int argc, char* argv[]) {
       errExit("File \'%s\' is not readable", fileName);
     }
   } else {
-    puts("main.c: Filename not provided, using default");
+    printf("main.c: Filename not provided, enter input (press CTRL+D when done): ");
     fp = stdin;
+    printf("\n");
     strcpy(fileName, "out");
   }
   
