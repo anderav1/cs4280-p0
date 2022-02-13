@@ -3,17 +3,19 @@
 // CS 4280, Project 0
 // traversals.c
 
+#include "node.h"
+
 //
-void traverseLevelOrder(node_t* root, const char[] outputName) {
+void traverseLevelOrder(node_t* root, const char outputName[]) {
 
 }
 
 //
-void traversePreOrder(node_t* root, const char[] outputName) {
+void traversePreOrder(node_t* root, const char outputName[]) {
 
 }
 
 //
-void traversePostOrder(node_t* root, const char[] outputName) {
+void traversePostOrder(node_t* root, const char outputName[]) {
 
 }

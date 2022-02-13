@@ -7,28 +7,31 @@
 #include "traversals.h"
 #include "buildTree.h"
 
-char* inputfile = NULL; 
+char* filename = NULL; 
 
 
 int main(int argc, char* argv[]) {
-	// TODO: process command line args
 	if (argc == 0 || argc >= 3) {
 		// TODO: print error message
+    puts("Invalid argument count");
 	} else if (argc == 2) {
-    inputfile = argv[1];
+    filename = argv[1];
   }
 
-	// TODO: make sure file is readable
-
+  FILE* fp;
+  if ((fp = fopen(filename, "r")) == NULL) {
+    // TODO: print error message
+    puts("File not readable");
+  }
 
 	// TODO: set up keyboard processing
 
 
-	node_t* root = buildTree(file);
+	node_t* root = buildTree(fp);
 
-	levelOrder(root);
-	preOrder(root);
-	postOrder(root);
+//	levelOrder(root);
+//	preOrder(root);
+//	postOrder(root);
 
 	return 0;
 }

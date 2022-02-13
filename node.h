@@ -13,11 +13,11 @@ typedef struct node_t {
   char letter;
   node_t *left, *right;
   list_t *list;
-};
+} node_t;
 
-typedef struct tree_t {
+typedef struct {
   node_t *root;
-};
+} tree_t;
 
 
 #endif

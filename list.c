@@ -3,6 +3,8 @@
 // CS 4280, Project 0
 // list.c
 
+#include <stdlib.h>
+#include <string.h>
 #include "list.h"
 
 // create empty list
@@ -16,7 +18,7 @@ list_t* createList() {
 }
 
 // create a list node for a new word
-private listnode_t* createListNode(char* word) {
+listnode_t* createListNode(char* word) {
   listnode_t* node = (listnode_t*)malloc(sizeof(listnode_t));
   
   strcpy(node->word, word);
@@ -30,13 +32,13 @@ void addToList(list_t* list, char* word) {
   listnode_t* newnode = createListNode(word);
   
   if (listEmpty(list)) {
-    list->head = node;
-    list->tail = node;
+    list->head = newnode;
+    list->tail = newnode;
     return;
   }
   
-  list->tail->next = node;
-  list->tail = node;
+  list->tail->next = newnode;
+  list->tail = newnode;
 }
 
 // check if list is empty

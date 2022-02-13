@@ -11,13 +11,13 @@ typedef struct listnode_t {
   struct listnode_t* next;
 } listnode_t;
 
-typedef struct list_t {
+typedef struct {
   listnode_t *head, *tail;
 } list_t;
 
 
 list_t* createList();
-private listnode_t* createListNode(char*);
+listnode_t* createListNode(char*);
 void addToList(list_t*, char*);
 bool listEmpty(list_t*);
 
