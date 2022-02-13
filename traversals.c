@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "config.h"
 #include "list.h"
 #include "node.h"
 #include "traversals.h"
@@ -20,9 +21,8 @@ void traverseLevelOrder(node_t* root, const char fileName[]) {
 void traversePreOrder(node_t* root, const char fileName[]) {
   if (root == NULL) return;
   
-  // TODO: visit current node
-  char* outputFile = NULL;
-  sprintf(outputFile, "%s.preorder", fileName);
+  char outputFile[bufferSize];
+  snprintf(outputFile, bufferSize, "%s.preorder", fileName);
 
   printNodeToFile(root, outputFile);
   
@@ -37,13 +37,13 @@ void traversePostOrder(node_t* root, const char fileName[]) {
   traversePostOrder(root->left, fileName);
   traversePostOrder(root->right, fileName);
   
-  // TODO: visit current node
-  char* outputFile = NULL;
-  sprintf(outputFile, "%s.postorder", fileName);
+  char outputFile[bufferSize];
+  snprintf(outputFile, bufferSize, "%s.postorder", fileName);
   
   printNodeToFile(root, outputFile);
 }
 
+// print current node to file
 void printNodeToFile(node_t* node, const char fileName[]) {
   FILE* fp;
   listnode_t* listptr;
@@ -56,7 +56,10 @@ void printNodeToFile(node_t* node, const char fileName[]) {
   fprintf(fp, "%c :", node->letter);
   
   listptr = node->list->head;
-  while (listptr != NULL) fprintf(fp, " %s", listptr->word);
+  while (listptr != NULL) {
+    fprintf(fp, " %s", listptr->word);
+    listptr = listptr->next;
+  }
   
   fprintf(fp, "\n");
   

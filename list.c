@@ -1,10 +1,12 @@
 // Lexi Anderson
-// Feb 12, 2022
+// Feb 13, 2022
 // CS 4280, Project 0
 // list.c
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "list.h"
 
 // create empty list

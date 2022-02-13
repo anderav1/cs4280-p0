@@ -9,20 +9,20 @@
 #include <string.h>
 
 #include "buildTree.h"
+#include "config.h"
 #include "list.h"
 #include "node.h"
 
 // build a new tree based on contents of file
 node_t* buildTree(FILE* file) {
   node_t* root = NULL;
-
-  char* word = NULL;  // may need to set definite string size
-  while (fscanf(file, "%s", word) == 1) {
+  char word[bufferSize];
+  
+  while (fscanf(file, "%s", word) == 1) {  
     if (!isValidWord(word)) {
       printf("Fatal: invalid word \"%s\" encountered\n", word);
       exit(1);
     }
-    
     root = insertInTree(root, word);
   }
   
@@ -66,12 +66,15 @@ char getLastLetter(const char word[]) {
 
 // create new tree node
 node_t* createTreeNode(char letter) {
-  node_t* newnode = (node_t*)malloc(sizeof(node_t));
+  node_t* newnode;
+  list_t* newlist;
+  
+  newnode = (node_t*)malloc(sizeof(node_t));
   
   newnode->letter = letter;
   newnode->left = NULL;
   newnode->right = NULL;
-  newnode->list = NULL;
+  newnode->list = createList();
   
   return newnode;
 }

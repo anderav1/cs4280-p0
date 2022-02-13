@@ -36,22 +36,20 @@ int main(int argc, char* argv[]) {
     if (fp == NULL) {
       errExit("File \'%s\' is not readable", fileName);
     }
-    puts("Input file successfully opened");
   } else {
-    puts("Filename not provided, using default");
+    puts("main.c: Filename not provided, using default");
     fp = stdin;
     strcpy(fileName, "out");
   }
   
-  puts("Resetting output files");
   resetOutputFiles(fileName);
 
-  puts("Building tree");
+  puts("main: Building tree");
 	root = buildTree(fp);
  
   if (fp != stdin) fclose(fp);
 
-  puts("Starting tree traversals");
+  puts("main: Starting tree traversals");
 //	traverseLevelOrder(root, fileName);
 	traversePreOrder(root, fileName);
 	traversePostOrder(root, fileName);
@@ -86,11 +84,11 @@ void clearFileContents(const char* fileName) {
   FILE* fp;
   
   if ((fp = fopen(fileName, "w")) == NULL) {
-    errExit("Could not write to file %s\n", fileName);
+    errExit("main.c: Could not write to file %s\n", fileName);
   }
   
   if (fclose(fp) == EOF) {
-    errExit("Could not close file %s\n", fileName);
+    errExit("main.c: Could not close file %s\n", fileName);
   }
 }
 

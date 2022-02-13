@@ -6,8 +6,10 @@
 #ifndef LIST_H
 #define LIST_H
 
+#include "config.h"
+
 typedef struct listnode_t {
-  char* word;
+  char word[bufferSize];
   struct listnode_t* next;
 } listnode_t;
 
