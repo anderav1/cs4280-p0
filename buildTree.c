@@ -1,5 +1,5 @@
 // Lexi Anderson
-// Feb 12, 2022
+// Feb 13, 2022
 // CS 4280, Project 0
 // buildTree.c
 
@@ -18,7 +18,8 @@ node_t* buildTree(FILE* file) {
   char* word = NULL;  // may need to set definite string size
   while (fscanf(file, "%s", word) == 1) {
     if (!isValidWord(word)) {
-      // return error message and abort
+      printf("Fatal: invalid word \"%s\" encountered\n", word);
+      exit(1);
     }
     
     root = insertInTree(root, word);
@@ -30,7 +31,7 @@ node_t* buildTree(FILE* file) {
 // check that word is comprised only of lowercase letters
 bool isValidWord(char* word) {
   int i;
-  for (i = 0; i < strlen(word); i++) {
+  for (i = 0; i < (int)strlen(word); i++) {
     if (word[i] < 'a' || word[i] > 'z') return false;
   }
   return true;
