@@ -18,13 +18,17 @@ node_t* buildTree(FILE* file) {
   node_t* root = NULL;
   char word[bufferSize];
   
-  while (fscanf(file, "%s", word) == 1) {  
-    if (!isValidWord(word)) {
-      printf("Fatal: invalid word \"%s\" encountered\n", word);
-      exit(1);
-    }
-    root = insertInTree(root, word);
+  if (fscanf(file, "%s", word) < 1) {
+    errExit("Input empty");
   }
+  
+  do {
+    if (!isValidWord(word)) {
+      errExit("Fatal: invalid word \"%s\" encountered\n", word);
+    }
+    
+    root = insertInTree(root, word);
+  } while (fscanf(file, "%s", word) == 1);
   
   return root;
 }

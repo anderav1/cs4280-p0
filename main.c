@@ -37,7 +37,7 @@ int main(int argc, char* argv[]) {
       errExit("File \'%s\' is not readable", fileName);
     }
   } else {
-    printf("main.c: Filename not provided, enter input (press CTRL+D when done): ");
+    printf("main: Filename not provided, enter input (press CTRL+D when done): ");
     fp = stdin;
     printf("\n");
     strcpy(fileName, "out");
@@ -45,15 +45,16 @@ int main(int argc, char* argv[]) {
   
   resetOutputFiles(fileName);
 
-  puts("main: Building tree");
 	root = buildTree(fp);
+  puts("main: Tree built successfully");
  
   if (fp != stdin) fclose(fp);
 
   puts("main: Starting tree traversals");
-//	traverseLevelOrder(root, fileName);
+	traverseLevelOrder(root, fileName);
 	traversePreOrder(root, fileName);
 	traversePostOrder(root, fileName);
+  puts("main: All traversals completed");
 
 	return 0;
 }
@@ -85,11 +86,11 @@ void clearFileContents(const char* fileName) {
   FILE* fp;
   
   if ((fp = fopen(fileName, "w")) == NULL) {
-    errExit("main.c: Could not write to file %s\n", fileName);
+    errExit("main: Could not write to file %s\n", fileName);
   }
   
   if (fclose(fp) == EOF) {
-    errExit("main.c: Could not close file %s\n", fileName);
+    errExit("main: Could not close file %s\n", fileName);
   }
 }
 

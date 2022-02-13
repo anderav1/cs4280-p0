@@ -13,8 +13,13 @@
 
 // breadth-first traversal
 void traverseLevelOrder(node_t* root, const char fileName[]) {
-  // TODO: implement level-order traversal
+  int d, i;
+  char outputFile[bufferSize];
   
+  snprintf(outputFile, bufferSize, "%s.levelorder", fileName);
+  
+  d = getDepth(root);
+  for (i = 1; i <= d; i++) printTreeLevel(root, i, outputFile);
 }
 
 // visit node, then left and right children
@@ -67,4 +72,25 @@ void printNodeToFile(node_t* node, const char fileName[]) {
     printf("Failed to close file %s", fileName);
     exit(1);
   }
+}
+
+// print one level of the tree
+void printTreeLevel(node_t* root, int level, const char fileName[]) {
+  if (root == NULL) return;
+  
+  if (level == 1) printNodeToFile(root, fileName);
+  else if (level > 1) {
+    printTreeLevel(root->left, level - 1, fileName);
+    printTreeLevel(root->right, level - 1, fileName);
+  }
+}
+
+// get depth of node
+int getDepth(node_t* node) {
+  if (node == NULL) return 0;
+  
+  int depthLeft = getDepth(node->left);
+  int depthRight = getDepth(node->right);
+  
+  return (depthLeft > depthRight ? depthLeft + 1 : depthRight + 1);
 }

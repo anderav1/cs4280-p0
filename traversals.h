@@ -13,5 +13,8 @@ void traversePreOrder(node_t*, const char[]);
 void traversePostOrder(node_t*, const char[]);
 void printNodeToFile(node_t*, const char[]);
 
+void printTreeLevel(node_t*, int, const char[]);
+int getDepth(node_t*);
+
 
 #endif
