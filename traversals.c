@@ -11,6 +11,8 @@
 #include "node.h"
 #include "traversals.h"
 
+int maxDepth = 0;
+
 // breadth-first traversal
 void traverseLevelOrder(node_t* root, const char fileName[]) {
   int d, i;
@@ -20,6 +22,7 @@ void traverseLevelOrder(node_t* root, const char fileName[]) {
   
   d = getDepth(root);
   for (i = 1; i <= d; i++) printTreeLevel(root, i, outputFile);
+  //for (i = 0; i <= d; i++) printTreeLevel(root, i, outputFile);
 }
 
 // visit node, then left and right children
@@ -52,13 +55,19 @@ void traversePostOrder(node_t* root, const char fileName[]) {
 void printNodeToFile(node_t* node, const char fileName[]) {
   FILE* fp;
   listnode_t* listptr;
+  int depth;
   
   if ((fp = fopen(fileName, "a+")) == NULL) {
     printf("Failed to open file %s", fileName);
     exit(1);
   }
   
-  fprintf(fp, "%c :", node->letter);
+  depth = getDepth(node);
+  if (depth > maxDepth) maxDepth = depth;
+  
+  fprintf(fp, "%d%*s %c :", maxDepth - depth, (maxDepth - depth) * 2, " ", node->letter);
+  
+  //fprintf(fp, "%*c%d %c :", node->letter);
   
   listptr = node->list->head;
   while (listptr != NULL) {
@@ -89,8 +98,8 @@ void printTreeLevel(node_t* root, int level, const char fileName[]) {
 int getDepth(node_t* node) {
   if (node == NULL) return 0;
   
-  int depthLeft = getDepth(node->left);
-  int depthRight = getDepth(node->right);
+  int depthL = getDepth(node->left);
+  int depthR = getDepth(node->right);
   
-  return (depthLeft > depthRight ? depthLeft + 1 : depthRight + 1);
+  return (depthL > depthR ? depthL + 1 : depthR + 1);
 }
