@@ -13,7 +13,9 @@
 #include "list.h"
 #include "node.h"
 
-// build a new tree based on contents of file
+// Build a new tree based on contents of file
+// file -- pointer to input file or stdin
+// Returns the root node of the generated tree
 node_t* buildTree(FILE* file) {
   node_t* root = NULL;
   char word[bufferSize];
@@ -33,7 +35,9 @@ node_t* buildTree(FILE* file) {
   return root;
 }
 
-// check that word is comprised only of lowercase letters
+// Check that word is comprised only of lowercase letters
+// word -- string to be validated
+// Returns true if the string contains all legal characters
 bool isValidWord(const char word[]) {
   int i;
   for (i = 0; i < (int)strlen(word); i++) {
@@ -42,7 +46,10 @@ bool isValidWord(const char word[]) {
   return true;
 }
 
-// add word to corresponding tree node
+// Add word to corresponding tree node
+// root -- root node of tree
+// word -- word to be added
+// Returns the root node of the tree
 node_t* insertInTree(node_t* root, const char word[]) {
   char letter = getLastLetter(word);
   
@@ -63,12 +70,16 @@ node_t* insertInTree(node_t* root, const char word[]) {
   return root;
 }
 
-// get the last letter in the word
+// Get the last letter in the word
+// word -- word from which to extract last letter
+// Returns the last letter in the word
 char getLastLetter(const char word[]) {
     return word[strlen(word) - 1];
 }
 
-// create new tree node
+// Create new tree node
+// letter -- letter to create new tree node with
+// Returns the newly created node
 node_t* createTreeNode(char letter) {
   node_t* newnode;
   list_t* newlist;

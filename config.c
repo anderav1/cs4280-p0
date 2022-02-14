@@ -10,6 +10,8 @@
 #include "config.h"
 
 // Abort execution and print error message
+// format -- formatted string to be used in error message
+// ... -- optional argument list
 void errExit(char* format, ...) {
   char errMsg[bufferSize];
   char printMsg[bufferSize];

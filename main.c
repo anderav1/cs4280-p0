@@ -59,7 +59,9 @@ int main(int argc, char* argv[]) {
 	return 0;
 }
 
-// print the entered command followed by line break
+// Print the entered command followed by line break
+// argc -- argument count
+// argv -- argument array
 void printArgV(int argc, char* argv[]) {
   int i;
   for (i = 0; i < argc; i++) {
@@ -68,7 +70,8 @@ void printArgV(int argc, char* argv[]) {
   printf("\n");
 }
 
-// clean up any previously generated output files
+// Clean up any previously generated output files
+// baseFileName -- first part of the name of the output files
 void resetOutputFiles(char baseFileName[]) {
   char preFile[bufferSize], postFile[bufferSize], levelFile[bufferSize];
   
@@ -81,7 +84,8 @@ void resetOutputFiles(char baseFileName[]) {
   clearFileContents(levelFile);
 }
 
-// erase file contents
+// Erase file contents
+// fileName -- name of file to clear
 void clearFileContents(const char* fileName) {
   FILE* fp;
   

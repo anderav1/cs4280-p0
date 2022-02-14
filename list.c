@@ -9,7 +9,8 @@
 
 #include "list.h"
 
-// create empty list
+// Create empty list
+// Returns the empty list
 list_t* createList() {
   list_t* list = (list_t*)malloc(sizeof(list_t));
   
@@ -19,7 +20,9 @@ list_t* createList() {
   return list;
 }
 
-// create a list node for a new word
+// Create a list node for a new word
+// word -- word to use to create node
+// Returns the newly created node
 listnode_t* createListNode(const char word[]) {
   listnode_t* node = (listnode_t*)malloc(sizeof(listnode_t));
   
@@ -29,7 +32,9 @@ listnode_t* createListNode(const char word[]) {
   return node;
 }
 
-// append new word to end of list
+// Append new word to end of list
+// list -- list to be appended
+// word -- word to add to list
 void addToList(list_t* list, const char word[]) {
   listnode_t* newnode = createListNode(word);
   
@@ -43,7 +48,9 @@ void addToList(list_t* list, const char word[]) {
   list->tail = newnode;
 }
 
-// check if list is empty
+// Check if list is empty
+// list -- list to check
+// Returns true if empty
 bool listEmpty(list_t* list) {
   return (list->head == NULL);
 }
